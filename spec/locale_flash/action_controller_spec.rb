@@ -11,6 +11,17 @@ describe ActionController::Base do
       @controller.edit
       @controller.flash.should == {:warning => {:controller => 'users', :action => 'create'}}
     end
+
+    context "when the controller is nested" do
+      before(:each) do
+        @controller = Admin::UsersController.new
+      end
+
+      it "sets the flash[key] to a hash containing the full path to the controller and the action name" do
+        @controller.show
+        @controller.flash.should == {:alert => {:controller => 'admin/users', :action => 'show'}}
+      end
+    end
   end
 
   describe '#locale_notice' do

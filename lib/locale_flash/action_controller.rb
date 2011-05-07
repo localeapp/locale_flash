@@ -4,7 +4,7 @@ module LocaleFlash
   private
   
     def locale_flash(key)
-      flash[key] = {:controller => controller_name, :action => action_name}
+      flash[key] = {:controller => controller_path, :action => action_name}
     end
 
     def locale_notice

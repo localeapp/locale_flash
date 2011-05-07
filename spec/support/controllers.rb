@@ -9,7 +9,6 @@ module ActionController
 end
 
 class UsersController < ActionController::Base
-
   def edit
     locale_flash(:warning)
   end
@@ -24,11 +23,28 @@ class UsersController < ActionController::Base
 
 private
 
-  def controller_name
+  def controller_path
     'users'
   end
 
   def action_name
     'create'
+  end
+end
+
+module Admin
+end
+
+class Admin::UsersController < ActionController::Base
+  def show
+    locale_alert
+  end
+
+  def controller_path
+    'admin/users'
+  end
+
+  def action_name
+    'show'
   end
 end

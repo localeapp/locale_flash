@@ -1,6 +1,6 @@
 # locale_flash
 
-## Intallation
+## Installation
 
 Add locale_flash to your Gemfile :
 
