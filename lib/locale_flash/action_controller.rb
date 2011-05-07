@@ -1,5 +1,8 @@
 module LocaleFlash
   module ActionController
+    
+  private
+  
     def locale_flash(key)
       flash[key] = {:controller => controller_name, :action => action_name}
     end

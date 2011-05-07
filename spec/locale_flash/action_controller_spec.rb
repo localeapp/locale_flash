@@ -8,21 +8,21 @@ describe ActionController::Base do
 
   describe '#locale_flash(key)' do
     it "sets flash[key] to a hash containing the controller name and the action name" do
-      @controller.locale_flash(:foo)
-      @controller.flash.should == {:foo => {:controller => 'users', :action => 'create'}}
+      @controller.edit
+      @controller.flash.should == {:warning => {:controller => 'users', :action => 'create'}}
     end
   end
 
   describe '#locale_notice' do
     it "sets flash[:notice] to a hash contianing the controller name and the action name" do
-      @controller.locale_notice
+      @controller.create
       @controller.flash.should == {:notice => {:controller => 'users', :action => 'create'}}
     end
   end
 
   describe '#locale_alert' do
     it "sets flash[:alert] to a hash contianing the controller name and the action name" do
-      @controller.locale_alert
+      @controller.destroy
       @controller.flash.should == {:alert => {:controller => 'users', :action => 'create'}}
     end
   end
