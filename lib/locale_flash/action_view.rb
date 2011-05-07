@@ -10,7 +10,8 @@ module LocaleFlash
           output << locale_flash_wrap(key, value)
         end
       end
-      output
+
+      output.respond_to?(:html_safe) ? output.html_safe : output
     end
 
   private

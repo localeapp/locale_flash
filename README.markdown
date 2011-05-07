@@ -77,7 +77,6 @@ Given that I call *locale_notice* from the create action in a UsersController, t
     controllers.flash.notice              # fallback to the generic notice message
 
 ## TODO
-+ Make sure the returned flash is html_safe
 + Add an option to configure the wrapping html tags/classes
 + Make sure that nested controllers have the correct fallbacks
 + Allow options to be passed to the I18n.t call (like :locale => :fr for example)
