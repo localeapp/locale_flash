@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ["chris@tigrish.com"]
   s.homepage    = ""
   s.summary     = %q{Super charge your flash messages with I18n}
-  s.description = %q{TODO: Write a gem description}
+  s.description = %q{locale_flash lets you create flash messages easily with I18n fallbacks}
 
   s.rubyforge_project = "locale_flash"
 
