@@ -5,7 +5,7 @@ module LocaleFlash
       output = ''
       flash.each do |key, value|
         if value.is_a?(Hash)
-          output << wrap_flash(key, t(['controllers', value[:controller], value[:action], key].join('.')))
+          output << wrap_flash(key, t(flash_path(key, value), :default => flash_default(key, value)))
         else
           output << wrap_flash(key, value)
         end
@@ -14,7 +14,18 @@ module LocaleFlash
     end
 
     def wrap_flash(key, value)
-      content_tag(:div, value, :class => key)
+      %Q{<div class="#{key}">#{value}</div>}
+    end
+
+    def flash_path(key, value)
+      ['controllers', value[:controller], value[:action], 'flash', key].join('.').to_sym
+    end
+
+    def flash_default(key, value)
+      [ ['controllers', value[:controller], 'flash', key],
+        ['controllers', 'flash', value[:action], key],
+        ['controllers', 'flash', key]
+      ].map { |i| i.join('.').to_sym }
     end
 
   end

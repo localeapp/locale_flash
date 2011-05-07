@@ -1,0 +1,12 @@
+en:
+  controllers:
+    flash:
+      notice: Found in controllers.flash.notice
+      show:
+        notice: Found in controllers.flash.show.notice
+    users:
+      flash:
+        notice: Found in controllers.users.flash.notice
+      create:
+        flash:
+          notice: Found in controllers.users.create.flash.notice
