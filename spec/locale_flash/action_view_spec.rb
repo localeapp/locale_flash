@@ -49,5 +49,6 @@ describe ActionView::Base do
         @template.locale_flash.should == %Q{<div class="notice">Found in controllers.flash.notice</div>}
       end
     end
+
   end
 end
