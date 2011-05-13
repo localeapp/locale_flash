@@ -76,8 +76,16 @@ Given that I call *locale_notice* from the create action in a UsersController, t
     controllers.flash.create.notice       # fallback to the notice message for all create actions
     controllers.flash.notice              # fallback to the generic notice message
 
+Given a nested Admin::UsersController, the order of fallbacks will be as follows :
+
+    controllers.admin.users.create.flash.notice
+    controllers.admin.create.flash.show.notice
+    controllers.admin.create.flash.notice
+    controllers.admin.flash.notice
+    controllers.flash.create.notice
+    controllers.flash.notice
+
 ## TODO
 + Add an option to configure the wrapping html tags/classes
-+ Make sure that nested controllers have the correct fallbacks
 + Allow options to be passed to the I18n.t call (like :locale => :fr for example)
 + Add the option of predefining common messages (like resource_created for example)

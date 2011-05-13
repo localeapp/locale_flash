@@ -21,14 +21,27 @@ module LocaleFlash
     end
 
     def locale_flash_key(key, value)
-      ['controllers', value[:controller], value[:action], 'flash', key].join('.').to_sym
+      ['controllers', value[:controller].split('/').join('.'), value[:action], 'flash', key].join('.').to_sym
     end
 
-    def locale_flash_default(key, value)
-      [ ['controllers', value[:controller], 'flash', key],
-        ['controllers', 'flash', value[:action], key],
-        ['controllers', 'flash', key]
-      ].map { |i| i.join('.').to_sym }
+    def locale_flash_default(type, msg)
+      controllers = msg[:controller].split('/')
+
+      if controllers.size > 1
+        defaults = []
+        controllers.each_with_index do |controller, i|
+          controller = controllers[0, (controllers.size - i)].join('.')
+          parent     = controllers[0, (controllers.size - i - 1)].join('.')
+          defaults << ['controllers', controller, 'flash', type]
+          defaults << ['controllers', parent, 'flash', msg[:action], type] unless parent.empty?
+        end
+      else
+        defaults = [['controllers', controllers.first, 'flash', type]]
+      end
+
+      defaults << ['controllers', 'flash', msg[:action], type]
+      defaults << ['controllers', 'flash', type]
+      defaults.map { |i| i.join('.').to_sym }
     end
 
   end

@@ -49,6 +49,46 @@ describe ActionView::Base do
         @template.locale_flash.should == %Q{<div class="notice">Found in controllers.flash.notice</div>}
       end
     end
+  end
 
+  describe "#locale_flash_default(type, msg)" do
+    it "should be correct for simple controllers" do
+      @template.send(
+        :locale_flash_default,
+        :notice, {:controller => 'users',  :action => 'show'}
+      ).should == [
+        :"controllers.users.flash.notice",
+        :"controllers.flash.show.notice",
+        :"controllers.flash.notice"
+      ]
+    end
+
+    it "should be correct for nested controllers" do
+      @template.send(
+        :locale_flash_default,
+        :notice, {:controller => 'admin/users', :action => 'show'}
+      ).should == [
+        :"controllers.admin.users.flash.notice",
+        :"controllers.admin.flash.show.notice",
+        :"controllers.admin.flash.notice",
+        :"controllers.flash.show.notice",
+        :"controllers.flash.notice"
+      ]
+    end
+
+    it "should be correct for multiply nested controllers" do
+      @template.send(
+        :locale_flash_default,
+        :notice, {:controller => 'admin/users/projects', :action => 'show'}
+      ).should == [
+        :"controllers.admin.users.projects.flash.notice",
+        :"controllers.admin.users.flash.show.notice",
+        :"controllers.admin.users.flash.notice",
+        :"controllers.admin.flash.show.notice",
+        :"controllers.admin.flash.notice",
+        :"controllers.flash.show.notice",
+        :"controllers.flash.notice"
+      ]
+    end
   end
 end
