@@ -87,5 +87,4 @@ Given a nested Admin::UsersController, the order of fallbacks will be as follows
 
 ## TODO
 + Add an option to configure the wrapping html tags/classes
-+ Allow options to be passed to the I18n.t call (like :locale => :fr for example)
 + Add the option of predefining common messages (like resource_created for example)
