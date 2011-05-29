@@ -10,15 +10,15 @@ end
 
 class UsersController < ActionController::Base
   def edit
-    locale_flash(:warning)
+    locale_flash(:warning, :name => 'Chris')
   end
 
   def create
-    locale_notice
+    locale_notice(:name => 'John')
   end
 
   def destroy
-    locale_alert
+    locale_alert(:name => 'Martin')
   end
 
 private
