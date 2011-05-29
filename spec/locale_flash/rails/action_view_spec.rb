@@ -51,5 +51,4 @@ describe ActionView::Base do
     end
   end
 
-  
 end
