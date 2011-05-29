@@ -10,3 +10,6 @@ en:
       create:
         flash:
           notice: Found in controllers.users.create.flash.notice
+      show:
+        flash:
+          notice: Showing profile for %{name}
