@@ -60,6 +60,10 @@ This will produce HTML output like this :
       <div class="notice">My message here</div>
     </div>
 
+If you'd like to modify the output, e.g. render a partial, add an initializer:
+
+    # config/initializers/locale_flash.rb
+    LocaleFlash::Config.template = -> (type, str) { render 'shared/flash', type: type, message: str }
 
 Note : if you are adding locale_flash to an existing application with manual assignments to flash[:notice], this will be rendered without I18n lookups.
 
@@ -86,5 +90,4 @@ Given a nested Admin::UsersController, the order of fallbacks will be as follows
     controllers.flash.notice
 
 ## TODO
-+ Add an option to configure the wrapping html tags/classes
 + Add the option of predefining common messages (like resource_created for example)
