@@ -60,7 +60,7 @@ module LocaleFlash
       else
         I18n.t(key, options.merge(:default => fallbacks))
       end
-      %Q{<div class="#{type}">#{str}</div>}
+      LocaleFlash::Config.template.call(type, str)
     end
   end
 end
