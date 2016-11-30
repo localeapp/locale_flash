@@ -11,11 +11,27 @@ module LocaleFlash
     end
 
     def self.from_params(type, params={})
-      if params.is_a?(Hash) && params[:controller] && params[:action]
+      if params_hash_stringkeys? params
+        build_from_hash_stringkeys type, params
+      elsif params.is_a?(Hash) && params[:controller] && params[:action]
         new(params.merge(:type => type))
       else
         new(:type => type, :message => params.to_s)
       end
+    end
+
+    private_class_method def self.build_from_hash_stringkeys(type, params)
+      new(
+        :type       => type,
+        :controller => params["controller"],
+        :action     => params["action"],
+        :options    => params["options"]
+      )
+    end
+
+    private_class_method def self.params_hash_stringkeys?(params)
+      return false unless params.kind_of? Hash
+      %w[controller action].all? { |key| params.key? key }
     end
 
     def to_params

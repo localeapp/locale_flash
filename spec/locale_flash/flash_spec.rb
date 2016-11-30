@@ -72,6 +72,32 @@ describe LocaleFlash::Flash do
         @flash.message.should == "I'm a flash"
       end
     end
+
+    context "when a hash with string keys is passed" do
+      subject :flash do
+        LocaleFlash::Flash.from_params(:notice, {
+          "controller"  => "admin/users",
+          "action"      => "update",
+          "options"     => { "foo" => "bar" }
+        })
+      end
+
+      it "builds the flash" do
+        expect(flash).to be
+      end
+
+      it "sets the controller" do
+        expect(flash.controller).to eq "admin/users"
+      end
+
+      it "sets the action" do
+        expect(flash.action).to eq "update"
+      end
+
+      it "sets the options" do
+        expect(flash.options).to include "foo" => "bar"
+      end
+    end
   end
 
   describe '#to_params' do
