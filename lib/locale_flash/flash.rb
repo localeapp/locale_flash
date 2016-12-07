@@ -25,7 +25,9 @@ module LocaleFlash
         :type       => type,
         :controller => params["controller"],
         :action     => params["action"],
-        :options    => params["options"]
+        :options    => Hash[params["options"].map do |key, value|
+          [key.to_sym, value]
+        end]
       )
     end
 
