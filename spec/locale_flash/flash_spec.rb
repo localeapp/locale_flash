@@ -78,7 +78,10 @@ describe LocaleFlash::Flash do
         LocaleFlash::Flash.from_params(:notice, {
           "controller"  => "admin/users",
           "action"      => "update",
-          "options"     => { "foo" => "bar" }
+          "options"     => {
+            :foo  => "bar",
+            "baz" => "qux"
+          }
         })
       end
 
@@ -95,7 +98,11 @@ describe LocaleFlash::Flash do
       end
 
       it "sets the options" do
-        expect(flash.options).to include "foo" => "bar"
+        expect(flash.options).to include foo: "bar"
+      end
+
+      it "converts options with a string key to one with a symbol key" do
+        expect(flash.options).to include baz: "qux"
       end
     end
   end
