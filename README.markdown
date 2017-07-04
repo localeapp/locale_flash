@@ -64,10 +64,13 @@ This will produce HTML output like this:
       <div class="notice">My message here</div>
     </div>
 
-If you'd like to modify the output, e.g. render a partial, add an initializer:
+If you'd like to modify the output, pass a proc returning a string
+to `LocaleFlash::Config.template=`:
 
     # config/initializers/locale_flash.rb
-    LocaleFlash::Config.template = -> (type, str) { render 'shared/flash', type: type, message: str }
+    LocaleFlash::Config.template = -> (type, str) do
+      "<p class=#{type}>#{str}</p>"
+    end
 
 Note: if you are adding locale_flash to an existing application with
 manual assignments to flash[:notice], this will be rendered without
