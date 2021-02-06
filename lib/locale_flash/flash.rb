@@ -76,7 +76,7 @@ module LocaleFlash
       str = if legacy?
         message
       else
-        I18n.t(key, options.merge(:default => fallbacks))
+        I18n.t(key, **options.merge(:default => fallbacks))
       end
       LocaleFlash::Config.template.call(type, str)
     end
